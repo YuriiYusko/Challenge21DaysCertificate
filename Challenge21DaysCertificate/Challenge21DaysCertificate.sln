@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge21DaysCertificate", "Challenge21DaysCertificate\Challenge21DaysCertificate.csproj", "{0F944D78-50BC-43D1-82AF-1D88DB712C8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Challenge21DaysCertificate.Test", "Challenge21DaysCertificate.Test\Challenge21DaysCertificate.Test.csproj", "{8EB55E4D-C905-420D-B1B8-9A764E8B0BB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0F944D78-50BC-43D1-82AF-1D88DB712C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F944D78-50BC-43D1-82AF-1D88DB712C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F944D78-50BC-43D1-82AF-1D88DB712C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB55E4D-C905-420D-B1B8-9A764E8B0BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB55E4D-C905-420D-B1B8-9A764E8B0BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB55E4D-C905-420D-B1B8-9A764E8B0BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB55E4D-C905-420D-B1B8-9A764E8B0BB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
