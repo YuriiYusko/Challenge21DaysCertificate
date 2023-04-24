@@ -1,10 +1,14 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Challenge21DaysCertificate
 {
     class Start
     {
+        private static string titleBook = "";
+        private static string author = "";
+
         private static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -14,18 +18,18 @@ namespace Challenge21DaysCertificate
 
             while (!exit)
             {
-                Console.WriteLine("------------------Books-Ratings-Console-App-------------------");
-                Console.WriteLine("Skończyłeś czytać kolejną książkę ? Teraz czas na twoją ocenę.");
-                Console.WriteLine();
-                Console.WriteLine("       Chcesz, że by dane były zapisane do pliku .txt ?       ");
-                Console.WriteLine("                     Y - Tak  //  N - Nie                     ");
-                //WritelineColor(ConsoleColor.Cyan,
-                //    "1 - Add student's grades to the program memory and show statistics\n" +
-                //    "2 - Add student's grades to the .txt file and show statistics\n" +
-                //    "X - Close app\n");
+                Console.WriteLine("+-------------------Books-Ratings-Console-App--------------------+");
+                Console.WriteLine("| Skończyłeś czytać kolejną książkę ? Teraz czas na twoją ocenę. |");
+                Console.WriteLine("|                                                                |");
+                Console.WriteLine("|       Chcesz, że by dane były zapisane do pliku .txt ?         |");
+                Console.WriteLine("|                   Y/y - Tak       N/n - Nie                    |");
+                Console.WriteLine("|                             -   -                              |");
+                Console.WriteLine("|                                                                |");
+                Console.WriteLine("|                                                                |");
+                Console.WriteLine("|                                                                |");
+                Console.WriteLine("+----------------------------------------------------------------+");
 
-                //WritelineColor(ConsoleColor.Yellow, "What you want to do? \nPress key 1, 2 or X: ");
-
+                Console.SetCursorPosition(32, 5);
                 var input = Console.ReadLine();
 
                 switch (input)
@@ -38,24 +42,21 @@ namespace Challenge21DaysCertificate
                     case "Y":
                     case "y":
                         InFile();
-                        Console.WriteLine("_Y_");
                         break;
 
                     case "E":
                     case "e":
                         exit = true;
                         break;
-                    default:
-                        //WritelineColor(ConsoleColor.Red, "Invalid operation.\n");
-                        continue;
                 }
+                Console.SetCursorPosition(0, 0);
+                Console.Clear();
             }
         }
 
         private static void InFile()
         {
-            string titleBook = GetIn("Wpisz nazwę książki: ");
-            string author = GetIn("Wpisz autora książki: ");
+            GetAuthorAndTitle();
             if (!string.IsNullOrEmpty(titleBook) && !string.IsNullOrEmpty(author))
             {
                 Console.WriteLine($"{titleBook} {author}");
@@ -64,11 +65,71 @@ namespace Challenge21DaysCertificate
 
         private static void InMemory()
         {
-            string titleBook = GetIn("Wpisz nazwę książki: ");
-            string author = GetIn("Wpisz autora książki: ");
+            GetAuthorAndTitle();
             if (!string.IsNullOrEmpty(titleBook) && !string.IsNullOrEmpty(author))
             {
-                Console.WriteLine($"{titleBook} {author}");
+                var MyBookInMemory = new MyBookInMemory(titleBook, author);
+                Console.SetCursorPosition(2, 3);
+                ColorOutput(ConsoleColor.Green, "          1.Fabuła - nie ma bez niej dobrej powieści          \n");
+                Console.WriteLine             ("|                    Twoja ocena od 1 do 10:                     |");
+                Console.WriteLine             ("|                                                                |");
+                Console.ReadLine();
+            }
+        }
+
+        private static void GetAuthorAndTitle()
+        {
+            titleBook = "";
+            author = "";
+            int caunt = 0;
+
+            Console.SetCursorPosition(2, 3);
+            ColorOutput(ConsoleColor.Green, "     Ok. Zaczynamy ocenę, postępuj zgodnie z komunikatami:    \n");
+            Console.WriteLine("|                                                                |");
+            Console.WriteLine("|                                                                |");
+            Console.SetCursorPosition(2, 5);
+            Console.Write("Wpisz nazwę książki: ");
+            Console.SetCursorPosition(2, 8);
+            ColorOutput(ConsoleColor.Yellow, "Dla potwierdzenia naciśnij Enter:");
+            bool chaekTitle = true;
+            while (chaekTitle)
+            {
+                Console.SetCursorPosition(23, 5);
+                titleBook = Console.ReadLine();
+                if (titleBook != "")
+                {
+                    chaekTitle = false;
+                }
+                else
+                {
+                    Console.SetCursorPosition(2, 4);
+                    ColorOutput(ConsoleColor.Red, $"       Pole nie może zostać puste. Spróbuj jeszcze raz.       ");
+                    Console.SetCursorPosition(23, 5);
+                }
+            }
+            Console.SetCursorPosition(0, 4);
+            Console.Write("|                                                                |");
+           
+            Console.SetCursorPosition(0, 5);
+            Console.Write("|                                                                |");
+            Console.SetCursorPosition(2, 5);
+            Console.Write("Wpisz autora książki: ");
+
+            bool chaekAuthor = true;
+            while (chaekAuthor)
+            {
+                Console.SetCursorPosition(24, 5);
+                author = Console.ReadLine();
+                if (author != "")
+                {
+                    chaekAuthor = false;
+                }
+                else
+                {
+                    Console.SetCursorPosition(2, 4);
+                    ColorOutput(ConsoleColor.Red, $"       Pole nie może zostać puste. Spróbuj jeszcze raz.       ");
+                    Console.SetCursorPosition(24, 5);
+                }
             }
         }
 
@@ -76,6 +137,14 @@ namespace Challenge21DaysCertificate
         {
             Console.Write(inp);
             return Console.ReadLine();
+        }
+
+        private static void ColorOutput(ConsoleColor color, string text)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ResetColor();
+
         }
     }
 }
