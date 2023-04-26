@@ -8,7 +8,6 @@ namespace Challenge21DaysCertificate
 {
     internal class MyBookInMemory : MyBook, IBook
     {
-        //Variables
         private List<float> ratings;
 
         public MyBookInMemory(string titleBook, string author) : base(titleBook, author)
@@ -18,18 +17,15 @@ namespace Challenge21DaysCertificate
 
         public override void AddRating(float rating)
         {
-            if (Validation1to10(rating))
-            {
-                this.ratings.Add(rating);
-                OnAssignRating(new EventArgs());
-            }
+            this.ratings.Add(rating);
+            OnAssignRating(new EventArgs());
         }
 
         public override void AddRating(string rating)
         {
             if (float.TryParse(rating, out float result))
             {
-                if (Validation1to10(result)) { AddRating(rating); }
+                AddRating(result);
             }
         }
 
