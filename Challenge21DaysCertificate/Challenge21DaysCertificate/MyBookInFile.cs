@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Challenge21DaysCertificate
 {
-    internal class MyBookInMemory : MyBook, IBook
+    internal class MyBookInFile : MyBook, IBook
     {
         private List<float> ratings;
 
-        public MyBookInMemory(string titleBook, string author) : base(titleBook, author)
+        public MyBookInFile(string titleBook, string author) : base(titleBook, author)
         {
             ratings = new List<float>();
         }
@@ -38,8 +36,24 @@ namespace Challenge21DaysCertificate
             {
                 ratings.AddRating(grade);
             }
+            SaveInFile();
             return ratings;
         }
 
+        public void SaveInFile()
+        {
+            using (var writer = File.AppendText($"{TitleBook}_{Author}.txt"))
+            {
+                writer.WriteLine($"Nazwa - {TitleBook}");
+                writer.WriteLine($"Author - {Author}");
+                writer.WriteLine($"1.Fabuła         - {ratings[0]}");
+                writer.WriteLine($"2.Bohaterowie    - {ratings[1]}");
+                writer.WriteLine($"3.Narracja       - {ratings[2]}");
+                writer.WriteLine($"4.Emocje         - {ratings[3]}");
+                writer.WriteLine($"5.Kreacja świata - {ratings[4]}");
+                writer.WriteLine($"{DateTime.UtcNow}");
+                writer.WriteLine($"");
+            }
+        }
     }
 }

@@ -59,7 +59,9 @@ namespace Challenge21DaysCertificate
             GetAuthorAndTitle();
             if (!string.IsNullOrEmpty(titleBook) && !string.IsNullOrEmpty(author))
             {
-                Console.WriteLine($"{titleBook} {author}");
+                var book = new MyBookInFile(titleBook, author);
+                GetRating(book);
+                book.GetRatingStatistics().ShowStatistics(book);
             }
         }
 
@@ -128,7 +130,7 @@ namespace Challenge21DaysCertificate
             }
         }
 
-        private static void GetRating(MyBookInMemory book)
+        private static void GetRating(MyBook book)
         {
             Console.SetCursorPosition(2, 3);
             ColorOutput(ConsoleColor.Green, "          1.Fabuła - nie ma bez niej dobrej powieści          \n");
@@ -162,7 +164,7 @@ namespace Challenge21DaysCertificate
             GetInput(book);
         }
 
-        private static void GetInput(MyBookInMemory book)
+        private static void GetInput(MyBook book)
         {
             bool nextQuestion = false;
             while (!nextQuestion)
