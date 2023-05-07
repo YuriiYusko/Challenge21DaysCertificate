@@ -1,7 +1,6 @@
-﻿
-namespace Challenge21DaysCertificate
+﻿namespace Challenge21DaysCertificate
 {
-    internal interface IBook
+    public interface IBook
     {
         string TitleBook { get; set; }
         string Author { get; set; }

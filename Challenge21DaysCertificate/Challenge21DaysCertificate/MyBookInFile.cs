@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Challenge21DaysCertificate
+﻿namespace Challenge21DaysCertificate
 {
-    internal class MyBookInFile : MyBook, IBook
+    public class MyBookInFile : MyBook, IBook
     {
         private List<float> ratings;
 
@@ -18,7 +12,7 @@ namespace Challenge21DaysCertificate
         public override void AddRating(float rating)
         {
             this.ratings.Add(rating);
-            OnAssignRating(new EventArgs());
+            OnAssignRating();
         }
 
         public override void AddRating(string rating)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Challenge21DaysCertificate
+﻿namespace Challenge21DaysCertificate
 {
     class Start
     {
@@ -60,6 +56,7 @@ namespace Challenge21DaysCertificate
             if (!string.IsNullOrEmpty(titleBook) && !string.IsNullOrEmpty(author))
             {
                 var book = new MyBookInFile(titleBook, author);
+                book.AssignRating += EGradeAdde;
                 GetRating(book);
                 book.GetRatingStatistics().ShowStatistics(book);
             }
@@ -71,6 +68,7 @@ namespace Challenge21DaysCertificate
             if (!string.IsNullOrEmpty(titleBook) && !string.IsNullOrEmpty(author))
             {
                 var book = new MyBookInMemory(titleBook, author);
+                book.AssignRating += EGradeAdde;
                 GetRating(book);
                 book.GetRatingStatistics().ShowStatistics(book);
             }
@@ -136,31 +134,31 @@ namespace Challenge21DaysCertificate
             ColorOutput(ConsoleColor.Green, "          1.Fabuła - nie ma bez niej dobrej powieści          \n");
             Console.WriteLine("|                    Twoja ocena od 1 do 10:                     |");
             Console.WriteLine("|                                                                |");
-            Console.WriteLine("|                                                                |");
+            //Console.WriteLine("|                                                                |");
             GetInput(book);
             Console.SetCursorPosition(2, 3);
             ColorOutput(ConsoleColor.Green, "         2.Bohaterowie - dobry bohater wzbudza emocje         \n");
             Console.WriteLine("|                    Twoja ocena od 1 do 10:                     |");
             Console.WriteLine("|                                                                |");
-            Console.WriteLine("|                                                                |");
+            //Console.WriteLine("|                                                                |");
             GetInput(book);
             Console.SetCursorPosition(2, 3);
             ColorOutput(ConsoleColor.Green, "            3.Narracja  - otwiera drzwi wyobraźni             \n");
             Console.WriteLine("|                    Twoja ocena od 1 do 10:                     |");
             Console.WriteLine("|                                                                |");
-            Console.WriteLine("|                                                                |");
+            //Console.WriteLine("|                                                                |");
             GetInput(book);
             Console.SetCursorPosition(2, 3);
             ColorOutput(ConsoleColor.Green, "       4.Emocje - dobra książka zostawia po sobie ślad        \n");
             Console.WriteLine("|                    Twoja ocena od 1 do 10:                     |");
             Console.WriteLine("|                                                                |");
-            Console.WriteLine("|                                                                |");
+            //Console.WriteLine("|                                                                |");
             GetInput(book);
             Console.SetCursorPosition(2, 3);
             ColorOutput(ConsoleColor.Green, "       5.Kreacja świata - potrafi przenieść w inyy świat      \n");
             Console.WriteLine("|                    Twoja ocena od 1 do 10:                     |");
             Console.WriteLine("|                                                                |");
-            Console.WriteLine("|                                                                |");
+            //Console.WriteLine("|                                                                |");
             GetInput(book);
         }
 
@@ -203,6 +201,12 @@ namespace Challenge21DaysCertificate
             Console.ForegroundColor = color;
             Console.Write(text);
             Console.ResetColor();
+        }
+
+        static void EGradeAdde(object sender, EventArgs args)
+        {
+            Console.SetCursorPosition(2, 6);
+            Console.WriteLine("                        Ocenę dodano.                          ");
         }
     }
 }

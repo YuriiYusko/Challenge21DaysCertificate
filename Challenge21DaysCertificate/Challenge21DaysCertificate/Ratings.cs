@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Challenge21DaysCertificate
+﻿namespace Challenge21DaysCertificate
 {
-    internal class Ratings
+    public class Ratings
     {
         private List<float> ratings;
         public float Min { get; private set; }
@@ -24,7 +18,7 @@ namespace Challenge21DaysCertificate
         {
             get
             {
-                switch (this.Average)
+                switch (this.Suma)
                 {
                     case var average when average >= 40:
                         return 'A';
@@ -58,7 +52,7 @@ namespace Challenge21DaysCertificate
             ratings.Add(grade);
         }
 
-        public void ShowStatistics(MyBook book) 
+        public void ShowStatistics(MyBook book)
         {
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("+-------------------Books-Ratings-Console-App--------------------+");
@@ -91,7 +85,9 @@ namespace Challenge21DaysCertificate
             Console.SetCursorPosition(2, 5);
             Console.Write($"Najmniejsza ocena - {Min}");
             Console.SetCursorPosition(2, 6);
-            Console.Write($"liczba całkowita  - {Suma} / 50");
+            Console.Write($"Średnia ocena  - {Average}");
+            Console.SetCursorPosition(2, 8);
+            Console.Write($"Twoja ocena to: -= {AverageLeter} =-");
             Console.ReadLine();
         }
     }
